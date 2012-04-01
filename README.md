@@ -12,11 +12,6 @@ As the project grows in size and stability, more features will be added, namely:
 - Dynamic and random rule setting.
 - User interaction to help the inference process.
 
-This page lets you create HTML by entering text in a simple format that's easy to read and write.
-
-  - Type Markdown text in the left window
-  - See the HTML in the right
-
 License and terms of use
 ---
 
