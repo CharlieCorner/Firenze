@@ -11,6 +11,7 @@ public abstract class AlgoritmoDeInferencia {
     protected List<String> hechosDeInicio;
     protected List<String> hechosInferidos;
     protected List<String> hechosPreguntados;
+    protected List<Regla> conjuntoDeReglas;
 
     public AlgoritmoDeInferencia() {
     }
@@ -39,6 +40,14 @@ public abstract class AlgoritmoDeInferencia {
         this.hechosPreguntados = hechosPreguntados;
     }
 
+    public List<Regla> getConjuntoDeReglas() {
+        return conjuntoDeReglas;
+    }
+
+    public void setConjuntoDeReglas(List<Regla> conjuntoDeReglas) {
+        this.conjuntoDeReglas = conjuntoDeReglas;
+    }
+    
     protected boolean agregarAHechosDeInicio(String elemento) {
         if (null != hechosDeInicio) {
             hechosDeInicio.add(elemento);
