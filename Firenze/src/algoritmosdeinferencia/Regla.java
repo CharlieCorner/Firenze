@@ -9,7 +9,7 @@ import java.util.List;
 public class Regla {
     private int indiceDeRegla;
     private List<String> causantes;
-    private List<String> producidos;
+    private String producidos;
 
     public Regla() {
     }
@@ -24,7 +24,7 @@ public class Regla {
         this.causantes = causantes;
     }
 
-    public void setProducidos(List<String> producidos) {
+    public void setProducidos(String producidos) {
         this.producidos = producidos;
     }
 
@@ -32,7 +32,7 @@ public class Regla {
         return causantes;
     }
 
-    public List<String> getProducidos() {
+    public String getProducidos() {
         return producidos;
     }
 
