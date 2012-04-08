@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package capasdecontrol;
 
 /**
  *
- * @author charlie
+ * @author Charlie Corner
  */
 public class FirenzeBean {
     
