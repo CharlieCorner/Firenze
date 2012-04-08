@@ -33,3 +33,7 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# NetBeans generated files #
+############################
+nbproject/private/
