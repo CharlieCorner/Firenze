@@ -33,3 +33,7 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# IDE generated files #
+#######################
+nbproject/private/
