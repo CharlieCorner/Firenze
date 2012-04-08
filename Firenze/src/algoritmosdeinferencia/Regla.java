@@ -14,8 +14,8 @@ public class Regla {
     public Regla() {
     }
     
-    public static Regla crearRegla(String lineaDeReglas){
-        // ToDo
+    public static Regla fromLineaSinParsear(String lineaDeReglas){
+        //TODO
         return null;
         
     }
