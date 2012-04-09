@@ -28,7 +28,7 @@ public class Regla {
         List<String> listaCausantes = new ArrayList<String>();
         String producto;
         String reglas[] = lineaDeReglas.split("=");
-        String causas[] = reglas[0].replaceAll("[()]", "").split("^");
+        String causas[] = reglas[0].replaceAll("[()]", "").split("\\^");
 
         listaCausantes.addAll(Arrays.asList(causas));
         producto = reglas[1];
@@ -43,7 +43,7 @@ public class Regla {
             List<String> listaCausantes = new ArrayList<String>();
             String producto;
             String reglas[] = linea.split("=");
-            String causas[] = reglas[0].replaceAll("[()]", "").split("^");
+            String causas[] = reglas[0].replaceAll("[()]", "").split("\\^");
 
             listaCausantes.addAll(Arrays.asList(causas));
             producto = reglas[1];
