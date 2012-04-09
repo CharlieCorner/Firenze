@@ -36,7 +36,7 @@ public class Regla {
         return new Regla(cuentaIndiceReglas++, listaCausantes, producto);
     }
 
-    public static List<Regla> fromLineasSinParsear(String listaSinParsear[]) {
+    public static List<Regla> listaFromLineasSinParsear(String listaSinParsear[]) {
         List<Regla> listasDeReglas = new ArrayList<Regla>();
         
         for (String linea : listaSinParsear) {
