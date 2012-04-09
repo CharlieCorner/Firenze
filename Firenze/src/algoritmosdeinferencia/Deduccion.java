@@ -1,5 +1,6 @@
 package algoritmosdeinferencia;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import javax.swing.JOptionPane;
@@ -19,6 +20,9 @@ public class Deduccion extends AlgoritmoDeInferencia {
     public Deduccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio) {
         this.conjuntoDeReglas = conjuntoDeReglas;
         this.hechosDeInicio = hechosDeInicio;
+        this.reglasDisparadas = new ArrayList<Regla>();
+        this.hechosInferidos = new ArrayList<String>();
+        this.hechosPreguntados = new ArrayList<String>();
     }
 
     public String correrAlgoritmo() {
