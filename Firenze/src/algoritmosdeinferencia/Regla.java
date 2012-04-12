@@ -1,7 +1,5 @@
 package algoritmosdeinferencia;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,35 +20,6 @@ public class Regla {
         this.indiceDeRegla = indiceDeRegla;
         this.causantes = causantes;
         this.producidos = producidos;
-    }
-
-    public static Regla fromLineaSinParsear(String lineaDeReglas) {
-        List<String> listaCausantes = new ArrayList<String>();
-        String producto;
-        String reglas[] = lineaDeReglas.split("=");
-        String causas[] = reglas[0].replaceAll("[()]", "").split("\\^");
-
-        listaCausantes.addAll(Arrays.asList(causas));
-        producto = reglas[1];
-
-        return new Regla(cuentaIndiceReglas++, listaCausantes, producto);
-    }
-
-    public static List<Regla> listaFromLineasSinParsear(String listaSinParsear[]) {
-        List<Regla> listasDeReglas = new ArrayList<Regla>();
-        
-        for (String linea : listaSinParsear) {
-            List<String> listaCausantes = new ArrayList<String>();
-            String producto;
-            String reglas[] = linea.split("=");
-            String causas[] = reglas[0].replaceAll("[()]", "").split("\\^");
-
-            listaCausantes.addAll(Arrays.asList(causas));
-            producto = reglas[1];
-
-            listasDeReglas.add(new Regla(cuentaIndiceReglas++, listaCausantes, producto));
-        }
-        return listasDeReglas;
     }
 
     public static void setCuentaIndiceReglas(int cuentaIndiceReglas) {
