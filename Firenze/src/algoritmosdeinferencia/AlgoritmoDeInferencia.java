@@ -18,6 +18,8 @@ public abstract class AlgoritmoDeInferencia {
     public AlgoritmoDeInferencia() {
     }
 
+    public abstract String correrAlgoritmo();
+    
     public List<String> getHechosDeInicio() {
         return hechosDeInicio;
     }

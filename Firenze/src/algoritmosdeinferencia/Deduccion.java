@@ -24,6 +24,7 @@ public class Deduccion extends AlgoritmoDeInferencia {
         this.hechosPreguntados = new ArrayList<String>();
     }
 
+    @Override
     public String correrAlgoritmo() {
 
         for (Regla r : conjuntoDeReglas) {

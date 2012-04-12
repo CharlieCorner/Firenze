@@ -8,8 +8,8 @@ import java.util.Stack;
  *
  * @author Charlie Corner
  */
-public class Induccion extends AlgoritmoDeInferencia{
-    
+public class Induccion extends AlgoritmoDeInferencia {
+
     private Stack<Regla> reglasPorDisparar;
     private List<Regla> reglasDisparadas;
     private String objetivo;
@@ -21,7 +21,12 @@ public class Induccion extends AlgoritmoDeInferencia{
         this.hechosInferidos = new ArrayList<String>();
         this.hechosPreguntados = new ArrayList<String>();
         this.objetivo = objetivo;
-    }  
+    }
+
+    @Override
+    public String correrAlgoritmo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     protected String crearTextoRespuesta() {
