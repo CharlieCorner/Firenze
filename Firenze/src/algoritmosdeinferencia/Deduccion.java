@@ -36,7 +36,7 @@ public class Deduccion extends AlgoritmoDeInferencia {
 
                 if (false == isElementoEnListas(s)) {
 
-                    if (true == preguntarSiElementoEsta(s)) {
+                    if (true == preguntarAlUsuarioSiEsta(s)) {
 
                         if (true != agregarAHechosPreguntados(s)) {
                             System.err.println("Hubo un problema al agregar "
@@ -122,12 +122,11 @@ public class Deduccion extends AlgoritmoDeInferencia {
         return false;
     }
 
-    private boolean preguntarSiElementoEsta(String s) {
+    private boolean preguntarAlUsuarioSiEsta(String s) {
         int respuesta = JOptionPane.showConfirmDialog(null,
                 "¿Está seguro que \"" + s + "\" no se tiene ya?",
                 "Confirmación",
                 JOptionPane.YES_NO_OPTION);
-        System.err.println("DEBUG:::::: respuesta: " + respuesta);
 
         if (0 == respuesta) {
             return true;
