@@ -2,6 +2,7 @@ package firenze;
 
 import algoritmosdeinferencia.Deduccion;
 import algoritmosdeinferencia.Regla;
+import capasdecontrol.FirenzeUtil;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class MainParaPruebas {
             "N=G",
             "G=H"};
         String hechosDeInicio[] = {"L", "F", "I"};
-        List<Regla> listaDeReglas = Regla.listaFromLineasSinParsear(lineaDeReglas);
+        List<Regla> listaDeReglas = FirenzeUtil.listaFromLineasSinParsear(lineaDeReglas);
         List<String> hechos = Arrays.asList(hechosDeInicio);
 
-        imprimirListaReglas(listaDeReglas);
-        imprimirListaString(hechos);
+        // imprimirListaReglas(listaDeReglas);
+        // imprimirListaString(hechos);
         
         Deduccion nuevoAlgoritmo = new Deduccion(listaDeReglas, hechos);
 

@@ -7,7 +7,7 @@ package algoritmosdeinferencia;
 public class Abduccion extends AlgoritmoDeInferencia {
 
     @Override
-    protected boolean isElementoEnListas(String elemento) {
+    protected String crearTextoRespuesta() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

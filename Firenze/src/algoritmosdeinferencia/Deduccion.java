@@ -3,7 +3,6 @@ package algoritmosdeinferencia;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,79 +62,12 @@ public class Deduccion extends AlgoritmoDeInferencia {
                 }
             }
         }
-        return crearTextoRespuesta();
+        this.resultado = crearTextoRespuesta();
+        return resultado;
     }
 
     @Override
-    protected boolean isElementoEnListas(String elemento) {
-
-        if (isElementoEnHechosInicio(elemento)) {
-            return true;
-        }
-
-        if (isElementoEnHechosInferidos(elemento)) {
-            return true;
-        }
-
-        if (isElementoEnHechosPreguntados(elemento)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isElementoEnHechosInicio(String elemento) {
-        if (null != hechosDeInicio) {
-
-            for (String s : hechosDeInicio) {
-
-                if (elemento.equals(s)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isElementoEnHechosInferidos(String elemento) {
-        if (null != hechosInferidos) {
-
-            for (String s : hechosInferidos) {
-
-                if (elemento.equals(s)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isElementoEnHechosPreguntados(String elemento) {
-        if (null != hechosPreguntados) {
-
-            for (String s : hechosPreguntados) {
-
-                if (elemento.equals(s)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean preguntarAlUsuarioSiEsta(String s) {
-        int respuesta = JOptionPane.showConfirmDialog(null,
-                "¿Está seguro que \"" + s + "\" no se tiene ya?",
-                "Confirmación",
-                JOptionPane.YES_NO_OPTION);
-
-        if (0 == respuesta) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private String crearTextoRespuesta() {
+    protected String crearTextoRespuesta() {
         StringBuilder sb = new StringBuilder("***Resultados del algoritmo de deducción***\n\n");
         sb = sb.append("Explicación:\n");
 
