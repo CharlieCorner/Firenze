@@ -47,13 +47,15 @@ public class Induccion extends AlgoritmoDeInferencia {
                     if (objetivo.equals(s)) {
                         seEncontroObjetivo = true;
                         pilaDeObjetivos.pop();
-                        dispararReglasPorDisparar();
                         break;
 
                     } else {
 
-                        if (i == listaObjetivos.size()) {
+                        if ((i+1) == listaObjetivos.size()) {
                             pilaDeObjetivos.pop();
+                            Regla r = reglasPorDisparar.pop();
+                            agregarAHechosInferidos(r.getProducidos());
+                            reglasDisparadas.add(r);
                         } else {
                             continue;
                         }
@@ -124,15 +126,6 @@ public class Induccion extends AlgoritmoDeInferencia {
         sb = sb.append(seEncontroObjetivo ? "Se encontró el objetivo!\n"
                 : "No se encontró el objetivo :(\n");
         return sb.toString();
-    }
-
-    private void dispararReglasPorDisparar() {
-
-        // int tamanoPila = reglasPorDisparar.size();
-        // Puede que aquí el tamaño de la pila este variando, por comprobar
-        for (int i = 0; i < reglasPorDisparar.size(); i++) {
-            reglasDisparadas.add(reglasPorDisparar.pop());
-        }
     }
 
     private Regla buscarReglaQueProduzca(String productoABuscar) {
