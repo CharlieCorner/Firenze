@@ -63,14 +63,22 @@ public class MainParaPruebas {
         String objetivo = "";
 
         if (0 == args.length) {
+            //            lineaDeReglas = new String[]{"L=J",
+            //                "F^J=M",
+            //                "I^K=P",
+            //                "L^M=N",
+            //                "N=G",
+            //                "G=H"};
             lineaDeReglas = new String[]{"L=J",
                 "F^J=M",
                 "I^K=P",
                 "L^M=N",
                 "N=G",
-                "G=H"};
-            hechosDeInicio = new String[]{"L"};
-            objetivo = "H";
+                "G=H",
+                "H^P=R",
+                "R=E"};
+            hechosDeInicio = new String[]{"L","K"};
+            objetivo = "R";
         } else {
             String reglasHechos[][] = parsearArchivo(args[0]);
             lineaDeReglas = reglasHechos[0];
@@ -84,7 +92,6 @@ public class MainParaPruebas {
         Induccion nuevoAlgoritmo = new Induccion(listaDeReglas, hechos, objetivo);
         String resultado = nuevoAlgoritmo.correrAlgoritmo();
         System.out.println(resultado);
-        imprimirPilaObjetivos(nuevoAlgoritmo.getPilaDeObjetivos());
     }
 
     private static void correrAlgoritmoAbduccion(String[] args) {
@@ -131,18 +138,6 @@ public class MainParaPruebas {
 
         for (String s : lista) {
             System.out.println(s);
-        }
-        System.out.println("");
-    }
-
-    private static void imprimirPilaObjetivos(Stack<List<String>> pila) {
-        System.out.println("*****Pila de objetivos en orden inverso******");
-
-        for (List<String> l : pila) {
-            for(String s: l){
-                System.out.print(s + " ");
-            }
-            System.out.println("");
         }
         System.out.println("");
     }
