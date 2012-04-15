@@ -138,9 +138,9 @@ public abstract class AlgoritmoDeInferencia {
         return false;
     }
 
-    protected boolean preguntarAlUsuarioSiEsta(String s) {
+    protected boolean preguntarAlUsuarioSiEsta(String elemento) {
         int respuesta = JOptionPane.showConfirmDialog(null,
-                "¿Está seguro que \"" + s + "\" no se tiene ya?",
+                "¿Está seguro que \"" + elemento + "\" no se tiene ya?",
                 "Confirmación",
                 JOptionPane.YES_NO_OPTION);
 
