@@ -30,7 +30,8 @@ public class Deduccion extends AlgoritmoDeInferencia {
 
     /**
      * Constructor que inicializa todos los campos de este objeto necesarios para
-     * la correcta ejecución del algoritmo.
+     * la correcta ejecución del algoritmo. Además inicializa el campo de resultado para
+     * mostrar un mensaje de error por si no se ha ejecutado el algoritmo.
      * @param conjuntoDeReglas la lista de objetos <code>Regla</code> que modelan
      *                          las reglas de ejecución de este algoritmo
      * @param hechosDeInicio    la lista con los hechos de inicio de este algoritmo
@@ -42,6 +43,7 @@ public class Deduccion extends AlgoritmoDeInferencia {
         this.reglasDisparadas = new ArrayList<Regla>();
         this.hechosInferidos = new ArrayList<String>();
         this.hechosPreguntados = new ArrayList<String>();
+        this.resultado = "No se ha corrido el algoritmo\n";
     }
 
     @Override
