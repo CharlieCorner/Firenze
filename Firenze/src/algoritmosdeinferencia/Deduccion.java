@@ -2,20 +2,40 @@ package algoritmosdeinferencia;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
- *
+ * Modela un algoritmo de inducción de tipo deductivo dada una lista de reglas
+ * y una lista de hechos de inicio. Extiende a <code>AlgoritmoDeInferencia</code>
+ * quien proporciona un comportamiento básico.
  * @author Charlie Corner
+ * @see AlgoritmoDeInferencia
  */
 public class Deduccion extends AlgoritmoDeInferencia {
 
+    /**
+     * La lista de reglas que han sido disparadas y que se usarán para la explicación
+     * de la ejecución del algoritmo.
+     * @see Regla
+     */
     private List<Regla> reglasDisparadas;
 
-    public Deduccion() {
-        this.reglasDisparadas = new Stack<Regla>();
+    /**
+     * Constructor por defecto hecho explícito y privado que no inicializa ningún
+     * campo. Se debe utilizar el otro constructor para instanciar objetos de
+     * esta clase.
+     * @see Deduccion#Deduccion(java.util.List, java.util.List) 
+     */
+    private Deduccion() {
     }
 
+    /**
+     * Constructor que inicializa todos los campos de este objeto necesarios para
+     * la correcta ejecución del algoritmo.
+     * @param conjuntoDeReglas la lista de objetos <code>Regla</code> que modelan
+     *                          las reglas de ejecución de este algoritmo
+     * @param hechosDeInicio    la lista con los hechos de inicio de este algoritmo
+     * @see Regla
+     */
     public Deduccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio) {
         this.conjuntoDeReglas = conjuntoDeReglas;
         this.hechosDeInicio = hechosDeInicio;
