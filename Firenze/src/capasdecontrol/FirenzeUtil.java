@@ -23,9 +23,7 @@ public class FirenzeUtil {
         listaCausantes.addAll(Arrays.asList(causas));
         producto = reglas[1];
 
-        int indice = Regla.getCuentaIndiceReglas();
-        Regla.setCuentaIndiceReglas(Regla.getCuentaIndiceReglas() + 1);
-        return new Regla(indice, listaCausantes, producto);
+        return new Regla(listaCausantes, producto);
     }
 
     public static List<Regla> listaFromLineasSinParsear(String listaSinParsear[]) {
@@ -40,9 +38,7 @@ public class FirenzeUtil {
             listaCausantes.addAll(Arrays.asList(causas));
             producto = reglas[1];
 
-            int indice = Regla.getCuentaIndiceReglas();
-            Regla.setCuentaIndiceReglas(Regla.getCuentaIndiceReglas() + 1);
-            listasDeReglas.add(new Regla(indice, listaCausantes, producto));
+            listasDeReglas.add(new Regla(listaCausantes, producto));
         }
         return listasDeReglas;
     }
