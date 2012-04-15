@@ -15,6 +15,9 @@ public class Induccion extends AlgoritmoDeInferencia {
     private List<Regla> reglasDisparadas;
     private String objetivo;
     private boolean seEncontroObjetivo;
+    
+    private Induccion(){
+    }
 
     public Induccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio, String objetivo) {
         this.conjuntoDeReglas = conjuntoDeReglas;
@@ -26,6 +29,7 @@ public class Induccion extends AlgoritmoDeInferencia {
         this.pilaDeObjetivos = new Stack<List<String>>();
         this.objetivo = objetivo;
         this.seEncontroObjetivo = false;
+        this.resultado = "No se ha corrido el algoritmo\n";
     }
 
     @Override
