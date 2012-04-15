@@ -1,14 +1,9 @@
 package firenze;
 
-import algoritmosdeinferencia.Abduccion;
-import algoritmosdeinferencia.AlgoritmoDeInferencia;
-import algoritmosdeinferencia.Deduccion;
-import algoritmosdeinferencia.Induccion;
-import algoritmosdeinferencia.Regla;
+import algoritmosdeinferencia.*;
 import capasdecontrol.FirenzeUtil;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Determina la clase para hacer pruebas de funcionalidad sin ninguna interfaz
