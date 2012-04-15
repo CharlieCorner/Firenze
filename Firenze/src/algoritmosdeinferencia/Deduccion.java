@@ -35,6 +35,8 @@ public class Deduccion extends AlgoritmoDeInferencia {
      * @param conjuntoDeReglas la lista de objetos <code>Regla</code> que modelan
      *                          las reglas de ejecución de este algoritmo
      * @param hechosDeInicio    la lista con los hechos de inicio de este algoritmo
+     * @see FirenzeUtil#listaFromLineasSinParsear(java.lang.String[]) 
+     * @see FirenzeUtil#fromLineaSinParsear(java.lang.String)
      * @see Regla
      */
     public Deduccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio) {
