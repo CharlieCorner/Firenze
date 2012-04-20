@@ -24,7 +24,7 @@ public class Regla {
     /**
      * El elemento producito si todos los hechos causantes se cumplen en este objeto
      */
-    private String producidos;
+    private String producto;
 
     /**
      * Constructor por defecto hecho privado y explícito para evitar su uso
@@ -37,14 +37,14 @@ public class Regla {
      * producido de este objeto. Adicionalmente le asigna un identificador único
      * a este objeto de manera anónima usando el campo estático para tal fin.
      * @param causantes la lista de hechos causantes de este objeto
-     * @param producidos el elemento producido si todos los hechos causantes de
+     * @param producto el elemento producido si todos los hechos causantes de
      *                      este objeto se cumplen
      * @see Regla#cuentaIndiceReglas
      */
-    public Regla(List<String> causantes, String producidos) {
+    public Regla(List<String> causantes, String producto) {
         this.indiceDeRegla = cuentaIndiceReglas++;
         this.causantes = causantes;
-        this.producidos = producidos;
+        this.producto = producto;
     }
 
     /**
@@ -79,10 +79,10 @@ public class Regla {
     /**
      * Permite establecer el hecho producido por este objeto si sus <code>causantes</code>
      * se cumplen en su totalidad.
-     * @param producidos la cadena con el nuevo elemento producido por este objeto
+     * @param producto la cadena con el nuevo elemento producido por este objeto
      */
-    public void setProducidos(String producidos) {
-        this.producidos = producidos;
+    public void setProducto(String producto) {
+        this.producto = producto;
     }
 
     /**
@@ -98,8 +98,8 @@ public class Regla {
      * @return el elemento producido por este objeto si todas los hechos causantes
      *          se cumplen
      */
-    public String getProducidos() {
-        return producidos;
+    public String getProducto() {
+        return producto;
     }
 
     /**
@@ -118,5 +118,23 @@ public class Regla {
      */
     public void setIndiceDeRegla(int indiceDeRegla) {
         this.indiceDeRegla = indiceDeRegla;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb = sb.append(this.indiceDeRegla).append(". (");
+
+        for (int i = 0; i < this.causantes.size(); i++) {
+            String s = this.causantes.get(i);
+            sb = sb.append(s);
+
+            if ((this.causantes.size() - 1) != i) {
+                sb = sb.append('^');
+            }
+        }
+        sb = sb.append(") --> ").append(this.producto);
+        
+        return sb.toString();
     }
 }
