@@ -59,17 +59,7 @@ public class Deduccion extends AlgoritmoDeInferencia {
             for (String s : r.getCausantes()) {
 
                 if (false == isElementoEnListas(s)) {
-
-                    if (true == preguntarAlUsuarioSiEsta(s)) {
-
-                        if (true != agregarAHechosPreguntados(s)) {
-                            System.err.println("Hubo un problema al agregar "
-                                    + r.getIndiceDeRegla() 
-                                    + " a la lista de hechos preguntados");
-                        }
-                    } else {
-                        seCompletaLaRegla = false;
-                    }
+                    seCompletaLaRegla = false;
                 }
             }
 
@@ -77,9 +67,9 @@ public class Deduccion extends AlgoritmoDeInferencia {
             if (seCompletaLaRegla) {
                 reglasDisparadas.add(r);
 
-                if (!isElementoEnListas(r.getProducidos())) {
+                if (!isElementoEnListas(r.getProducto())) {
 
-                    if (true != agregarAHechosInferidos(r.getProducidos())) {
+                    if (true != agregarAHechosInferidos(r.getProducto())) {
                         System.err.println("Hubo un problema al agregar "
                                 + r.getIndiceDeRegla()
                                 + " a la lista de hechos preguntados");
@@ -97,11 +87,10 @@ public class Deduccion extends AlgoritmoDeInferencia {
         sb = sb.append("Explicación:\n");
 
         for (Regla r : reglasDisparadas) {
-            sb = sb.append("Se disparó la regla ")
-                    .append(r.getIndiceDeRegla())
-                    .append(" y se agregó: ")
-                    .append(r.getProducidos());
+            sb = sb.append("Se disparó la regla ").append(r.getIndiceDeRegla()).append(" y se agregó: ").append(r.getProducto());
             sb = sb.append('\n');
+            sb = sb.append("Porque: \n");
+            sb = sb.append(r.toString()).append('\n');
         }
         sb = sb.append('\n');
         sb = sb.append("Hechos de inicio: \n");
