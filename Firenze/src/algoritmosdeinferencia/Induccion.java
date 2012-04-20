@@ -65,7 +65,7 @@ public class Induccion extends AlgoritmoDeInferencia {
      */
     public Induccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio, String objetivo) {
         this.conjuntoDeReglas = conjuntoDeReglas;
-        this.hechosDeInicio = (null == hechosDeInicio) ? new ArrayList<String>() 
+        this.hechosDeInicio = (null == hechosDeInicio) ? new ArrayList<String>()
                 : hechosDeInicio;
         this.reglasDisparadas = new ArrayList<Regla>();
         this.hechosInferidos = new ArrayList<String>();
@@ -103,7 +103,7 @@ public class Induccion extends AlgoritmoDeInferencia {
                         if ((i + 1) == listaObjetivos.size()) {
                             pilaDeObjetivos.pop();
                             Regla r = reglasPorDisparar.pop();
-                            agregarAHechosInferidos(r.getProducidos());
+                            agregarAHechosInferidos(r.getProducto());
                             reglasDisparadas.add(r);
                         } else {
                             continue;
@@ -148,7 +148,7 @@ public class Induccion extends AlgoritmoDeInferencia {
         sb = sb.append("Objetivo: ").append(objetivo).append('\n');
 
         for (Regla r : reglasDisparadas) {
-            sb = sb.append("Se disparó la regla ").append(r.getIndiceDeRegla()).append(" y se agregó: ").append(r.getProducidos());
+            sb = sb.append("Se disparó la regla ").append(r.getIndiceDeRegla()).append(" y se agregó: ").append(r.getProducto());
             sb = sb.append('\n');
         }
         sb = sb.append('\n');
@@ -191,7 +191,7 @@ public class Induccion extends AlgoritmoDeInferencia {
         Regla reglaARegresar = null;
 
         for (Regla r : conjuntoDeReglas) {
-            String productoDeRegla = r.getProducidos();
+            String productoDeRegla = r.getProducto();
 
             if (productoABuscar.equals(productoDeRegla)) {
                 reglaARegresar = r;
