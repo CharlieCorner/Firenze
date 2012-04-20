@@ -17,7 +17,8 @@ public class MainParaPruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // correrAlgoritmoDeduccion(args);
+        correrAlgoritmoDeduccion(args);
+        System.out.println("\n\n");
         correrAlgoritmoInduccion(args);
         // correrAlgoritmoAbduccion(args);
     }
@@ -32,8 +33,10 @@ public class MainParaPruebas {
                 "I^K=P",
                 "L^M=N",
                 "N=G",
-                "G=H"};
-            hechosDeInicio = new String[]{"L", "F", "I"};
+                "G=H",
+                "H^P=R",
+                "R=E"};
+            hechosDeInicio = new String[]{"L", "F", "P"};
         } else {
             String reglasHechos[][] = parsearArchivo(args[0]);
             lineaDeReglas = reglasHechos[0];
@@ -42,9 +45,6 @@ public class MainParaPruebas {
 
         List<Regla> listaDeReglas = FirenzeUtil.listaFromLineasSinParsear(lineaDeReglas);
         List<String> hechos = Arrays.asList(hechosDeInicio);
-
-        // imprimirListaReglas(listaDeReglas);
-        // imprimirListaString(hechos);
 
         AlgoritmoDeInferencia nuevoAlgoritmo = new Deduccion(listaDeReglas, hechos);
 
@@ -58,12 +58,6 @@ public class MainParaPruebas {
         String objetivo = "";
 
         if (0 == args.length) {
-            //            lineaDeReglas = new String[]{"L=J",
-            //                "F^J=M",
-            //                "I^K=P",
-            //                "L^M=N",
-            //                "N=G",
-            //                "G=H"};
             lineaDeReglas = new String[]{"L=J",
                 "F^J=M",
                 "I^K=P",
@@ -72,8 +66,9 @@ public class MainParaPruebas {
                 "G=H",
                 "H^P=R",
                 "R=E"};
-            hechosDeInicio = new String[]{"L","K"};
-            objetivo = "R";
+            
+            hechosDeInicio = new String[]{"M","F","K"};
+            objetivo = "F";
         } else {
             String reglasHechos[][] = parsearArchivo(args[0]);
             lineaDeReglas = reglasHechos[0];
@@ -84,7 +79,7 @@ public class MainParaPruebas {
         List<Regla> listaDeReglas = FirenzeUtil.listaFromLineasSinParsear(lineaDeReglas);
         List<String> hechos = Arrays.asList(hechosDeInicio);
 
-        Induccion nuevoAlgoritmo = new Induccion(listaDeReglas, hechos, objetivo);
+        AlgoritmoDeInferencia nuevoAlgoritmo = new Induccion(listaDeReglas, hechos, objetivo);
         String resultado = nuevoAlgoritmo.correrAlgoritmo();
         System.out.println(resultado);
     }
@@ -113,28 +108,6 @@ public class MainParaPruebas {
         AlgoritmoDeInferencia nuevoAlgoritmo = new Abduccion();
         String resultado = nuevoAlgoritmo.correrAlgoritmo();
         System.out.println(resultado);
-    }
-
-    private static void imprimirListaReglas(List<Regla> lista) {
-        System.out.println("****Lista de reglas****");
-
-        for (Regla r : lista) {
-            System.out.println(r.getIndiceDeRegla());
-
-            for (String s : r.getCausantes()) {
-                System.out.print(s + " ");
-            }
-            System.out.print(" = " + r.getProducidos() + "\n\n");
-        }
-    }
-
-    private static void imprimirListaString(List<String> lista) {
-        System.out.println("****Lista de hechos****");
-
-        for (String s : lista) {
-            System.out.println(s);
-        }
-        System.out.println("");
     }
 
     private static String[][] parsearArchivo(String string) {
