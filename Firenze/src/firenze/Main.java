@@ -1,5 +1,7 @@
 package firenze;
-
+ import java.awt.*;
+ import java.awt.event.*;
+ import javax.swing.*;
 /**
  *
  * @author Charlie Corner
@@ -7,9 +9,7 @@ package firenze;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Main
-     */
+    
     public Main() {
         initComponents();
     }
@@ -23,25 +23,117 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Lista = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        ButtArchivo = new javax.swing.JButton();
+        ButCorrecto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        LabelHecInic = new javax.swing.JLabel();
+        HechosInicio = new javax.swing.JTextField();
+        LabelObj = new javax.swing.JLabel();
+        ComboObjetivo = new javax.swing.JComboBox();
+        jLayeredPane4 = new javax.swing.JLayeredPane();
+        jRadioButton1 = new javax.swing.JRadioButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        ButtArchivo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        ButtArchivo.setText("Cargar Archivo de Reglas");
+
+        ButCorrecto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        ButCorrecto.setText("Correcto");
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText("ALGORITMOS DE INFERENCIA");
+
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "El algoritmo obtuvo como resultado:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(null);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jScrollPane2.setBounds(20, 30, 320, 260);
+        jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Requisitos:"));
+
+        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelHecInic.setText("Hechos de Inicio:");
+        LabelHecInic.setBounds(20, 30, 83, 14);
+        jLayeredPane2.add(LabelHecInic, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        HechosInicio.setBounds(110, 20, 168, 24);
+        jLayeredPane2.add(HechosInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelObj.setText("Objetivo:");
+        LabelObj.setBounds(50, 70, 45, 14);
+        jLayeredPane2.add(LabelObj, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        ComboObjetivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboObjetivo.setBounds(110, 70, 170, 20);
+        jLayeredPane2.add(ComboObjetivo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Algoritmos"));
+
+        jRadioButton1.setText("Deducción");
+        jRadioButton1.setBounds(10, 30, 75, 23);
+        jLayeredPane4.add(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(80, 80, 80)
+                            .addComponent(ButtArchivo))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(120, 120, 120)
+                            .addComponent(ButCorrecto))
+                        .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
+                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(ButtArchivo)
+                        .addGap(17, 17, 17)
+                        .addComponent(ButCorrecto)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
@@ -81,5 +173,22 @@ public class Main extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButCorrecto;
+    private javax.swing.JButton ButtArchivo;
+    private javax.swing.JComboBox ComboObjetivo;
+    private javax.swing.JTextField HechosInicio;
+    private javax.swing.JLabel LabelHecInic;
+    private javax.swing.JLabel LabelObj;
+    private javax.swing.ButtonGroup Lista;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
