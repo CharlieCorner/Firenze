@@ -100,13 +100,6 @@ public class Deduccion extends AlgoritmoDeInferencia {
         }
 
         sb = sb.append('\n');
-        sb = sb.append("Hechos preguntados: \n");
-
-        for (String s : hechosPreguntados) {
-            sb = sb.append(s).append('\n');
-        }
-
-        sb = sb.append('\n');
         sb = sb.append("Hechos inferidos: \n");
 
         for (String s : hechosInferidos) {
