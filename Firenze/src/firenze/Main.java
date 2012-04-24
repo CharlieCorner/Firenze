@@ -219,7 +219,10 @@ public class Main extends javax.swing.JFrame {
         bean = new FirenzeBean();
         resultTextArea.setText("");
         listaHechosInicio.setSelectedIndices(new int[0]);
-        ComboObjetivo.setSelectedIndex(0);
+        if (ComboObjetivo.getModel().getSize() != 0) {
+            ComboObjetivo.setSelectedIndex(0);
+        }
+
 
         if (null != archivo) {
             bean.setArchivoDeRegla(archivo);
@@ -256,7 +259,6 @@ public class Main extends javax.swing.JFrame {
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             bean.setArchivoDeRegla(fc.getSelectedFile());
-            System.out.println(fc.getSelectedFile().getAbsolutePath());
             this.ComboObjetivo.setModel(new DefaultComboBoxModel(bean.getComboDeObjetivosASeleccionar().toArray()));
             this.listaHechosInicio.setModel(new DefaultComboBoxModel(bean.getListaHechosDeInicioASeleccionar().toArray()));
             this.listaHechosInicio.setEnabled(bean.isActivarBoton());
