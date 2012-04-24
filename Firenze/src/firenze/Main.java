@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        butArchivo = new javax.swing.JButton();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -49,18 +49,19 @@ public class Main extends javax.swing.JFrame {
         butDeduccion = new javax.swing.JButton();
         butInduccion = new javax.swing.JButton();
         butLimpiar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuCargarArchivo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        aboutMenu = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Algoritmos de Inferencia - UVM");
 
-        butArchivo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        butArchivo.setText("Cargar Archivo de Reglas");
-        butArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butArchivoActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("ALGORITMOS DE INFERENCIA");
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "El algoritmo obtuvo como resultado:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -77,14 +78,14 @@ public class Main extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Requisitos:"));
 
-        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelHecInic.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         LabelHecInic.setText("Hechos de Inicio:");
-        LabelHecInic.setBounds(20, 30, 83, 14);
+        LabelHecInic.setBounds(20, 30, 83, 13);
         jLayeredPane2.add(LabelHecInic, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelObj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         LabelObj.setText("Objetivo:");
-        LabelObj.setBounds(20, 130, 45, 14);
+        LabelObj.setBounds(20, 130, 60, 15);
         jLayeredPane2.add(LabelObj, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         ComboObjetivo.setEnabled(bean.isActivarBoton());
@@ -107,7 +108,7 @@ public class Main extends javax.swing.JFrame {
                 butDeduccionActionPerformed(evt);
             }
         });
-        butDeduccion.setBounds(20, 30, 80, 30);
+        butDeduccion.setBounds(20, 30, 100, 30);
         jLayeredPane4.add(butDeduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         butInduccion.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -118,7 +119,7 @@ public class Main extends javax.swing.JFrame {
                 butInduccionActionPerformed(evt);
             }
         });
-        butInduccion.setBounds(110, 30, 80, 27);
+        butInduccion.setBounds(140, 30, 100, 30);
         jLayeredPane4.add(butInduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         butLimpiar.setText("Limpiar");
@@ -127,6 +128,35 @@ public class Main extends javax.swing.JFrame {
                 butLimpiarActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("Archivo");
+
+        menuCargarArchivo.setText("Cargar archivo de reglas nuevo...");
+        menuCargarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCargarArchivoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuCargarArchivo);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Editar");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Acerca");
+
+        aboutMenu.setText("Acerca de Firenze...");
+        aboutMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(aboutMenu);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,13 +171,11 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(butArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(butLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)))
+                                .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                                .addGap(29, 29, 29))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(butLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,19 +186,15 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(butArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(butLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(butLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -180,32 +204,15 @@ public class Main extends javax.swing.JFrame {
     private void butDeduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDeduccionActionPerformed
         resultTextArea.setText("");
         List<String> hechosDeInicio = new ArrayList<String>();
-        
-        for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
+
+        for (Object o : Arrays.asList(this.listaHechosInicio.getSelectedValues())) {
             hechosDeInicio.add(o.toString());
         }
-        
+
         bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
         bean.correrAlgoritmoDeduccion();
         resultTextArea.setText(bean.getResultado());
     }//GEN-LAST:event_butDeduccionActionPerformed
-
-    private void butArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butArchivoActionPerformed
-        JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(this);
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            bean.setArchivoDeRegla(fc.getSelectedFile());
-            System.out.println(fc.getSelectedFile().getAbsolutePath());
-            this.ComboObjetivo.setModel(new DefaultComboBoxModel(bean.getComboDeObjetivosASeleccionar().toArray()));
-            this.listaHechosInicio.setModel( new DefaultComboBoxModel(bean.getListaHechosDeInicioASeleccionar().toArray()));
-            this.listaHechosInicio.setEnabled(bean.isActivarBoton());
-            this.ComboObjetivo.setEnabled(bean.isActivarBoton());
-            this.resultTextArea.setEnabled(bean.isActivarBoton());
-            this.butDeduccion.setEnabled(bean.isActivarBoton());
-            this.butInduccion.setEnabled(bean.isActivarBoton());
-        }
-    }//GEN-LAST:event_butArchivoActionPerformed
 
     private void butLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLimpiarActionPerformed
         File archivo = bean.getArchivoDeRegla();
@@ -213,7 +220,7 @@ public class Main extends javax.swing.JFrame {
         resultTextArea.setText("");
         listaHechosInicio.setSelectedIndices(new int[0]);
         ComboObjetivo.setSelectedIndex(0);
-        
+
         if (null != archivo) {
             bean.setArchivoDeRegla(archivo);
         }
@@ -222,16 +229,43 @@ public class Main extends javax.swing.JFrame {
     private void butInduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butInduccionActionPerformed
         List<String> hechosDeInicio = new ArrayList<String>();
         resultTextArea.setText("");
-        
-        for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
+
+        for (Object o : Arrays.asList(this.listaHechosInicio.getSelectedValues())) {
             hechosDeInicio.add(o.toString());
         }
-        
+
         bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
         bean.setObjetivo(ComboObjetivo.getSelectedItem().toString());
         bean.correrAlgoritmoInduccion();
         resultTextArea.setText(bean.getResultado());
     }//GEN-LAST:event_butInduccionActionPerformed
+
+    private void aboutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuActionPerformed
+        String textoAbout = "****Universidad del Valle de México****\n"
+                + "Campus Toluca\n\n"
+                + "Sistemas basados en el conocimiento\n"
+                + "Yasmín Torres\n"
+                + "Carlos Eduardo Hernández Rincón\n\n"
+                + "Abril 2012";
+        resultTextArea.setText(textoAbout);
+    }//GEN-LAST:event_aboutMenuActionPerformed
+
+    private void menuCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCargarArchivoActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            bean.setArchivoDeRegla(fc.getSelectedFile());
+            System.out.println(fc.getSelectedFile().getAbsolutePath());
+            this.ComboObjetivo.setModel(new DefaultComboBoxModel(bean.getComboDeObjetivosASeleccionar().toArray()));
+            this.listaHechosInicio.setModel(new DefaultComboBoxModel(bean.getListaHechosDeInicioASeleccionar().toArray()));
+            this.listaHechosInicio.setEnabled(bean.isActivarBoton());
+            this.ComboObjetivo.setEnabled(bean.isActivarBoton());
+            this.resultTextArea.setEnabled(bean.isActivarBoton());
+            this.butDeduccion.setEnabled(bean.isActivarBoton());
+            this.butInduccion.setEnabled(bean.isActivarBoton());
+        }
+    }//GEN-LAST:event_menuCargarArchivoActionPerformed
 
     public static void main(String args[]) {
         /*
@@ -265,7 +299,6 @@ public class Main extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 new Main().setVisible(true);
@@ -277,7 +310,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel LabelHecInic;
     private javax.swing.JLabel LabelObj;
     private javax.swing.ButtonGroup Lista;
-    private javax.swing.JButton butArchivo;
+    private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JButton butDeduccion;
     private javax.swing.JButton butInduccion;
     private javax.swing.JButton butLimpiar;
@@ -288,9 +321,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList listaHechosInicio;
+    private javax.swing.JMenuItem menuCargarArchivo;
     private javax.swing.JTextArea resultTextArea;
     // End of variables declaration//GEN-END:variables
     private FirenzeBean bean;
