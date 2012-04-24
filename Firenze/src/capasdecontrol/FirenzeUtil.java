@@ -42,4 +42,21 @@ public class FirenzeUtil {
         }
         return listasDeReglas;
     }
+    
+    public static List<Regla> listaFromLineasSinParsear(List<String> listaSinParsear) {
+        List<Regla> listasDeReglas = new ArrayList<Regla>();
+
+        for (String linea : listaSinParsear) {
+            List<String> listaCausantes = new ArrayList<String>();
+            String producto;
+            String reglas[] = linea.split("=");
+            String causas[] = reglas[0].replaceAll("[()]", "").split("\\^");
+
+            listaCausantes.addAll(Arrays.asList(causas));
+            producto = reglas[1];
+
+            listasDeReglas.add(new Regla(listaCausantes, producto));
+        }
+        return listasDeReglas;
+    }
 }
