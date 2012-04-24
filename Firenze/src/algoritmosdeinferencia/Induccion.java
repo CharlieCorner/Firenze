@@ -150,6 +150,8 @@ public class Induccion extends AlgoritmoDeInferencia {
         for (Regla r : reglasDisparadas) {
             sb = sb.append("Se disparó la regla ").append(r.getIndiceDeRegla()).append(" y se agregó: ").append(r.getProducto());
             sb = sb.append('\n');
+            sb = sb.append("Porque: \n");
+            sb = sb.append(r.toString()).append('\n');
         }
         sb = sb.append('\n');
         sb = sb.append("Hechos de inicio: \n");
