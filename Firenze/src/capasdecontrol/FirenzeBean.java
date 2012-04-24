@@ -32,6 +32,7 @@ public class FirenzeBean {
 
     public void correrAlgoritmoDeduccion() {
         this.algoritmo = new Deduccion(listaReglas, listaHechosDeInicioASeleccionar);
+        this.algoritmo.correrAlgoritmo();
         this.resultado = algoritmo.getResultado();
     }
 

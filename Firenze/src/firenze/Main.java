@@ -1,12 +1,12 @@
 package firenze;
 
 import capasdecontrol.FirenzeBean;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 
 /**
  *
@@ -176,8 +176,10 @@ public class Main extends javax.swing.JFrame {
         List<String> hechosDeInicio = new ArrayList<String>();
         
         for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
+            System.out.println(o.toString());
             hechosDeInicio.add(o.toString());
         }
+        
         bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
         bean.correrAlgoritmoDeduccion();
         resultTextArea.setText(bean.getResultado());
@@ -190,8 +192,8 @@ public class Main extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             bean.setArchivoDeRegla(fc.getSelectedFile());
             System.out.println(fc.getSelectedFile().getAbsolutePath());
-            this.ComboObjetivo = new JComboBox(bean.getComboDeObjetivosASeleccionar().toArray(new String[0]));
-            this.listaHechosInicio = new JList(bean.getListaHechosDeInicioASeleccionar().toArray(new String[0]));
+            this.ComboObjetivo.setModel(new DefaultComboBoxModel(bean.getComboDeObjetivosASeleccionar().toArray()));
+            this.listaHechosInicio.setModel( new DefaultComboBoxModel(bean.getListaHechosDeInicioASeleccionar().toArray()));
             this.listaHechosInicio.setEnabled(bean.isActivarBoton());
             this.ComboObjetivo.setEnabled(bean.isActivarBoton());
             this.resultTextArea.setEnabled(bean.isActivarBoton());
@@ -201,7 +203,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_butArchivoActionPerformed
 
     private void butLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLimpiarActionPerformed
+        File archivo = bean.getArchivoDeRegla();
         bean = new FirenzeBean();
+        if (null != archivo) {
+            bean.setArchivoDeRegla(archivo);
+        }
     }//GEN-LAST:event_butLimpiarActionPerformed
 
     public static void main(String args[]) {
