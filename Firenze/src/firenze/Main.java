@@ -60,7 +60,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("ALGORITMOS DE INFERENCIA");
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "El algoritmo obtuvo como resultado:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -77,12 +77,12 @@ public class Main extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Requisitos:"));
 
-        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12));
+        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         LabelHecInic.setText("Hechos de Inicio:");
         LabelHecInic.setBounds(20, 30, 83, 14);
         jLayeredPane2.add(LabelHecInic, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12));
+        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         LabelObj.setText("Objetivo:");
         LabelObj.setBounds(20, 130, 45, 14);
         jLayeredPane2.add(LabelObj, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -113,6 +113,11 @@ public class Main extends javax.swing.JFrame {
         butInduccion.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         butInduccion.setText("Inducción");
         butInduccion.setEnabled(bean.isActivarBoton());
+        butInduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butInduccionActionPerformed(evt);
+            }
+        });
         butInduccion.setBounds(110, 30, 80, 27);
         jLayeredPane4.add(butInduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -161,7 +166,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(butLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,10 +178,10 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butDeduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDeduccionActionPerformed
+        resultTextArea.setText("");
         List<String> hechosDeInicio = new ArrayList<String>();
         
         for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
-            System.out.println(o.toString());
             hechosDeInicio.add(o.toString());
         }
         
@@ -205,10 +210,28 @@ public class Main extends javax.swing.JFrame {
     private void butLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLimpiarActionPerformed
         File archivo = bean.getArchivoDeRegla();
         bean = new FirenzeBean();
+        resultTextArea.setText("");
+        listaHechosInicio.setSelectedIndices(new int[0]);
+        ComboObjetivo.setSelectedIndex(0);
+        
         if (null != archivo) {
             bean.setArchivoDeRegla(archivo);
         }
     }//GEN-LAST:event_butLimpiarActionPerformed
+
+    private void butInduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butInduccionActionPerformed
+        List<String> hechosDeInicio = new ArrayList<String>();
+        resultTextArea.setText("");
+        
+        for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
+            hechosDeInicio.add(o.toString());
+        }
+        
+        bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
+        bean.setObjetivo(ComboObjetivo.getSelectedItem().toString());
+        bean.correrAlgoritmoInduccion();
+        resultTextArea.setText(bean.getResultado());
+    }//GEN-LAST:event_butInduccionActionPerformed
 
     public static void main(String args[]) {
         /*
