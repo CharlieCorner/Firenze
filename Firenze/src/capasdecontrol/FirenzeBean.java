@@ -2,6 +2,7 @@ package capasdecontrol;
 
 import algoritmosdeinferencia.AlgoritmoDeInferencia;
 import algoritmosdeinferencia.Deduccion;
+import algoritmosdeinferencia.Induccion;
 import algoritmosdeinferencia.Regla;
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,6 +38,9 @@ public class FirenzeBean {
     }
 
     public void correrAlgoritmoInduccion() {
+        this.algoritmo = new Induccion(listaReglas, listaHechosDeInicioSeleccionados,objetivo);
+        this.algoritmo.correrAlgoritmo();
+        this.resultado = algoritmo.getResultado();
     }
 
     public boolean isActivarBoton() {
