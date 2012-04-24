@@ -1,7 +1,13 @@
 package firenze;
- import java.awt.*;
- import java.awt.event.*;
- import javax.swing.*;
+
+import capasdecontrol.FirenzeBean;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JList;
+
 /**
  *
  * @author Charlie Corner
@@ -9,9 +15,10 @@ package firenze;
  */
 public class Main extends javax.swing.JFrame {
 
-    
     public Main() {
+        this.bean = new FirenzeBean();
         initComponents();
+
     }
 
     /**
@@ -27,113 +34,176 @@ public class Main extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        ButtArchivo = new javax.swing.JButton();
-        ButCorrecto = new javax.swing.JButton();
+        butArchivo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        resultTextArea = new javax.swing.JTextArea();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         LabelHecInic = new javax.swing.JLabel();
-        HechosInicio = new javax.swing.JTextField();
         LabelObj = new javax.swing.JLabel();
         ComboObjetivo = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaHechosInicio = new javax.swing.JList();
         jLayeredPane4 = new javax.swing.JLayeredPane();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        butDeduccion = new javax.swing.JButton();
+        butInduccion = new javax.swing.JButton();
+        butLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ButtArchivo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        ButtArchivo.setText("Cargar Archivo de Reglas");
+        butArchivo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        butArchivo.setText("Cargar Archivo de Reglas");
+        butArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butArchivoActionPerformed(evt);
+            }
+        });
 
-        ButCorrecto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        ButCorrecto.setText("Correcto");
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14));
         jLabel1.setText("ALGORITMOS DE INFERENCIA");
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "El algoritmo obtuvo como resultado:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(null);
-        jScrollPane2.setViewportView(jTextArea1);
+        resultTextArea.setColumns(20);
+        resultTextArea.setEditable(false);
+        resultTextArea.setRows(5);
+        resultTextArea.setBorder(null);
+        resultTextArea.setEnabled(bean.isActivarBoton());
+        jScrollPane2.setViewportView(resultTextArea);
 
         jScrollPane2.setBounds(20, 30, 320, 260);
         jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Requisitos:"));
 
-        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelHecInic.setFont(new java.awt.Font("Times New Roman", 0, 12));
         LabelHecInic.setText("Hechos de Inicio:");
         LabelHecInic.setBounds(20, 30, 83, 14);
         jLayeredPane2.add(LabelHecInic, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        HechosInicio.setBounds(110, 20, 168, 24);
-        jLayeredPane2.add(HechosInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LabelObj.setFont(new java.awt.Font("Times New Roman", 0, 12));
         LabelObj.setText("Objetivo:");
-        LabelObj.setBounds(50, 70, 45, 14);
+        LabelObj.setBounds(20, 130, 45, 14);
         jLayeredPane2.add(LabelObj, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        ComboObjetivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ComboObjetivo.setBounds(110, 70, 170, 20);
+        ComboObjetivo.setEnabled(bean.isActivarBoton());
+        ComboObjetivo.setBounds(110, 130, 170, 27);
         jLayeredPane2.add(ComboObjetivo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        listaHechosInicio.setEnabled(bean.isActivarBoton());
+        jScrollPane1.setViewportView(listaHechosInicio);
+
+        jScrollPane1.setBounds(110, 20, 170, 90);
+        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Algoritmos"));
 
-        jRadioButton1.setText("Deducción");
-        jRadioButton1.setBounds(10, 30, 75, 23);
-        jLayeredPane4.add(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        butDeduccion.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        butDeduccion.setText("Deduccion");
+        butDeduccion.setEnabled(bean.isActivarBoton());
+        butDeduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butDeduccionActionPerformed(evt);
+            }
+        });
+        butDeduccion.setBounds(20, 30, 80, 30);
+        jLayeredPane4.add(butDeduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        butInduccion.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        butInduccion.setText("Inducción");
+        butInduccion.setEnabled(bean.isActivarBoton());
+        butInduccion.setBounds(110, 30, 80, 27);
+        jLayeredPane4.add(butInduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        butLimpiar.setText("Limpiar");
+        butLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(80, 80, 80)
-                            .addComponent(ButtArchivo))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addComponent(ButCorrecto))
-                        .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(butArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(butLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                    .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
+                                .addGap(29, 29, 29)))
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(260, 260, 260))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(ButtArchivo)
-                        .addGap(17, 17, 17)
-                        .addComponent(ButCorrecto)
-                        .addGap(27, 27, 27)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(butArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(butLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void butDeduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDeduccionActionPerformed
+        List<String> hechosDeInicio = new ArrayList<String>();
+        
+        for(Object o: Arrays.asList(this.listaHechosInicio.getSelectedValues())){
+            hechosDeInicio.add(o.toString());
+        }
+        bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
+        bean.correrAlgoritmoDeduccion();
+        resultTextArea.setText(bean.getResultado());
+    }//GEN-LAST:event_butDeduccionActionPerformed
+
+    private void butArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butArchivoActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            bean.setArchivoDeRegla(fc.getSelectedFile());
+            System.out.println(fc.getSelectedFile().getAbsolutePath());
+            this.ComboObjetivo = new JComboBox(bean.getComboDeObjetivosASeleccionar().toArray(new String[0]));
+            this.listaHechosInicio = new JList(bean.getListaHechosDeInicioASeleccionar().toArray(new String[0]));
+            this.listaHechosInicio.setEnabled(bean.isActivarBoton());
+            this.ComboObjetivo.setEnabled(bean.isActivarBoton());
+            this.resultTextArea.setEnabled(bean.isActivarBoton());
+            this.butDeduccion.setEnabled(bean.isActivarBoton());
+            this.butInduccion.setEnabled(bean.isActivarBoton());
+        }
+    }//GEN-LAST:event_butArchivoActionPerformed
+
+    private void butLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLimpiarActionPerformed
+        bean = new FirenzeBean();
+    }//GEN-LAST:event_butLimpiarActionPerformed
+
     public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
@@ -167,19 +237,21 @@ public class Main extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new Main().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButCorrecto;
-    private javax.swing.JButton ButtArchivo;
     private javax.swing.JComboBox ComboObjetivo;
-    private javax.swing.JTextField HechosInicio;
     private javax.swing.JLabel LabelHecInic;
     private javax.swing.JLabel LabelObj;
     private javax.swing.ButtonGroup Lista;
+    private javax.swing.JButton butArchivo;
+    private javax.swing.JButton butDeduccion;
+    private javax.swing.JButton butInduccion;
+    private javax.swing.JButton butLimpiar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -187,8 +259,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane4;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JList listaHechosInicio;
+    private javax.swing.JTextArea resultTextArea;
     // End of variables declaration//GEN-END:variables
+    private FirenzeBean bean;
 }
