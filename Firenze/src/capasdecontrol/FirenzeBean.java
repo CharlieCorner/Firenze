@@ -4,9 +4,7 @@ import algoritmosdeinferencia.AlgoritmoDeInferencia;
 import algoritmosdeinferencia.Deduccion;
 import algoritmosdeinferencia.Induccion;
 import algoritmosdeinferencia.Regla;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,29 +73,7 @@ public class FirenzeBean {
 
     @SuppressWarnings("CallToThreadDumpStack")
     private List<String> leerArchivo() {
-        List<String> listaSinParsear = new ArrayList<String>();
-        FileReader fr = null;
-        BufferedReader br = null;
-        try {
-            fr = new FileReader(this.archivoDeRegla);
-            br = new BufferedReader(fr);
-
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                listaSinParsear.add(linea);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-        return listaSinParsear;
+        return FirenzeUtil.getListaDeStringDeArchivo(archivoDeRegla);
     }
 
     public List<String> getComboDeObjetivosASeleccionar() {
