@@ -48,6 +48,7 @@ public class Main extends javax.swing.JFrame {
         jLayeredPane4 = new javax.swing.JLayeredPane();
         butDeduccion = new javax.swing.JButton();
         butInduccion = new javax.swing.JButton();
+        abduccionButton = new javax.swing.JButton();
         butLimpiar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -108,7 +109,7 @@ public class Main extends javax.swing.JFrame {
                 butDeduccionActionPerformed(evt);
             }
         });
-        butDeduccion.setBounds(20, 30, 100, 30);
+        butDeduccion.setBounds(10, 30, 100, 30);
         jLayeredPane4.add(butDeduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         butInduccion.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -119,8 +120,19 @@ public class Main extends javax.swing.JFrame {
                 butInduccionActionPerformed(evt);
             }
         });
-        butInduccion.setBounds(140, 30, 100, 30);
+        butInduccion.setBounds(120, 30, 100, 30);
         jLayeredPane4.add(butInduccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        abduccionButton.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        abduccionButton.setText("Abducción");
+        abduccionButton.setEnabled(bean.isActivarBoton());
+        abduccionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abduccionButtonActionPerformed(evt);
+            }
+        });
+        abduccionButton.setBounds(230, 30, 90, 27);
+        jLayeredPane4.add(abduccionButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         butLimpiar.setText("Limpiar");
         butLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -266,8 +278,24 @@ public class Main extends javax.swing.JFrame {
             this.resultTextArea.setEnabled(bean.isActivarBoton());
             this.butDeduccion.setEnabled(bean.isActivarBoton());
             this.butInduccion.setEnabled(bean.isActivarBoton());
+            this.abduccionButton.setEnabled(bean.isActivarBoton());
         }
     }//GEN-LAST:event_menuCargarArchivoActionPerformed
+
+    private void abduccionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abduccionButtonActionPerformed
+        resultTextArea.setText("");
+        List<String> hechosDeInicio = new ArrayList<String>();
+
+        for (Object o : Arrays.asList(this.listaHechosInicio.getSelectedValues())) {
+            hechosDeInicio.add(o.toString());
+        }
+
+        bean.setListaHechosDeInicioSeleccionados(hechosDeInicio);
+        bean.setObjetivo(ComboObjetivo.getSelectedItem().toString());
+        bean.preguntarNumeroDeCiclos(this);
+        bean.correrAlgoritmoAbduccion();
+        resultTextArea.setText(bean.getResultado());
+    }//GEN-LAST:event_abduccionButtonActionPerformed
 
     public static void main(String args[]) {
         /*
@@ -312,6 +340,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel LabelHecInic;
     private javax.swing.JLabel LabelObj;
     private javax.swing.ButtonGroup Lista;
+    private javax.swing.JButton abduccionButton;
     private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JButton butDeduccion;
     private javax.swing.JButton butInduccion;

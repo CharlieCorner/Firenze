@@ -1,12 +1,15 @@
 package capasdecontrol;
 
+import algoritmosdeinferencia.Abduccion;
 import algoritmosdeinferencia.AlgoritmoDeInferencia;
 import algoritmosdeinferencia.Deduccion;
 import algoritmosdeinferencia.Induccion;
 import algoritmosdeinferencia.Regla;
+import firenze.Main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,11 +25,13 @@ public class FirenzeBean {
     private List<String> listaHechosDeInicioSeleccionados;
     private File archivoDeRegla;
     private String resultado;
+    private byte numeroDeCiclos;
     private boolean activarBoton;
 
     public FirenzeBean() {
         algoritmo = null;
         activarBoton = false;
+        numeroDeCiclos = 15;
     }
 
     public void correrAlgoritmoDeduccion() {
@@ -36,7 +41,13 @@ public class FirenzeBean {
     }
 
     public void correrAlgoritmoInduccion() {
-        this.algoritmo = new Induccion(listaReglas, listaHechosDeInicioSeleccionados,objetivo);
+        this.algoritmo = new Induccion(listaReglas, listaHechosDeInicioSeleccionados, objetivo);
+        this.algoritmo.correrAlgoritmo();
+        this.resultado = algoritmo.getResultado();
+    }
+
+    public void correrAlgoritmoAbduccion() {
+        this.algoritmo = new Abduccion(listaReglas, listaHechosDeInicioSeleccionados, objetivo, numeroDeCiclos);
         this.algoritmo.correrAlgoritmo();
         this.resultado = algoritmo.getResultado();
     }
@@ -108,14 +119,46 @@ public class FirenzeBean {
         this.listaHechosDeInicioASeleccionar = listaHechosDeInicioASeleccionar;
     }
 
+    public void setNumeroDeCiclos(byte numeroDeCiclos) {
+        this.numeroDeCiclos = numeroDeCiclos;
+    }
+
+    public void preguntarNumeroDeCiclos(Main framePrincipal) {
+        boolean isRespuestaValida;
+        do {
+            String respuesta = JOptionPane.showInputDialog(framePrincipal, "Ingrese el número de ciclos máximos con el\n"
+                    + "que desea limitar el algoritmo", "15");
+            try {
+                isRespuestaValida = true;
+                this.numeroDeCiclos = Byte.parseByte(respuesta);
+            } catch (NumberFormatException e) {
+                isRespuestaValida = false;
+                JOptionPane.showMessageDialog(framePrincipal,
+                        "El valor que ha ingresado no es válido, por favor, intente de nuevo.",
+                        "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            
+            if (numeroDeCiclos <= 0) {
+                isRespuestaValida = false;
+                JOptionPane.showMessageDialog(framePrincipal,
+                        "El valor que ha ingresado no es válido, por favor, intente de nuevo ingresando\n"
+                        + " un valor entre 1 y 127",
+                        "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } while (!isRespuestaValida);
+    }
+
     private List<String> parsearListaDeHechosDeInicio(List<Regla> listaReglas) {
         List<String> hechosDeInicio = new ArrayList<String>();
 
         for (Regla r : listaReglas) {
             List<String> causantes = r.getCausantes();
-            
-            for(String s: causantes){
-                
+
+            for (String s : causantes) {
+
                 if (!isCadenaEnLista(s, hechosDeInicio)) {
                     hechosDeInicio.add(s);
                 }
@@ -138,7 +181,7 @@ public class FirenzeBean {
     }
 
     private boolean isCadenaEnLista(String cadena, List<String> lista) {
-        
+
         for (String s : lista) {
             if (cadena.equals(s)) {
                 return true;

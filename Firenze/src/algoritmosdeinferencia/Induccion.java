@@ -55,12 +55,12 @@ public class Induccion extends AlgoritmoDeInferencia {
      *
      * @param conjuntoDeReglas la lista con las reglas que regirán la ejecución
      * del algoritmo
-     * @param hechosDeInicio la lista de hechos de inicio con el que se ejecutará
-     *                          el algoritmo. Puede ser opcional y el constructor
-     *                          se encargará de inicializar la lista.
-     * @param objetivo  el objetivo a comprobar por el algoritmo
-     * @see FirenzeUtil#listaFromLineasSinParsear(java.lang.String[]) 
-     * @see FirenzeUtil#fromLineaSinParsear(java.lang.String)  
+     * @param hechosDeInicio la lista de hechos de inicio con el que se
+     * ejecutará el algoritmo. Puede ser opcional y el constructor se encargará
+     * de inicializar la lista.
+     * @param objetivo el objetivo a comprobar por el algoritmo
+     * @see FirenzeUtil#listaFromLineasSinParsear(java.lang.String[])
+     * @see FirenzeUtil#fromLineaSinParsear(java.lang.String)
      * @see Regla
      */
     public Induccion(List<Regla> conjuntoDeReglas, List<String> hechosDeInicio, String objetivo) {
@@ -77,8 +77,27 @@ public class Induccion extends AlgoritmoDeInferencia {
         this.resultado = "No se ha corrido el algoritmo\n";
     }
 
+    public Induccion(Stack<Regla> reglasPorDisparar,
+            Stack<List<String>> pilaDeObjetivos,
+            List<Regla> reglasDisparadas,
+            List<String> hechosDeInicio,
+            List<String> hechosInferidos,
+            List<String> hechosPreguntados,
+            List<Regla> conjuntoDeReglas,
+            String objetivo) {
+        this.reglasPorDisparar = reglasPorDisparar;
+        this.pilaDeObjetivos = pilaDeObjetivos;
+        this.reglasDisparadas = reglasDisparadas;
+        this.objetivo = objetivo;
+        this.hechosDeInicio = hechosDeInicio;
+        this.hechosInferidos = hechosInferidos;
+        this.hechosPreguntados = hechosPreguntados;
+        this.conjuntoDeReglas = conjuntoDeReglas;
+    }
+
     @Override
     public String correrAlgoritmo() {
+        seEncontroObjetivo = false;
         List<String> listaObjetivos = new ArrayList<String>();
         listaObjetivos.add(objetivo);
         pilaDeObjetivos.push(listaObjetivos);
@@ -180,13 +199,17 @@ public class Induccion extends AlgoritmoDeInferencia {
     }
 
     /**
-     * Permite buscar una regla que produzca a <code>productoABuscar</code> en
-     * el <code>conjuntoDeRegla</code> de este objeto.
+     * Permite buscar una regla que produzca a
+     * <code>productoABuscar</code> en el
+     * <code>conjuntoDeRegla</code> de este objeto.
+     *
      * @param productoABuscar la cadena con el producto a buscar en la lista de
-     *                          reglas de este objeto
-     * @return  un objeto <code>Regla</code> que produzca a <code>productoABuscar</code>,
-     *          <code>null</code> si no encuentra ninguna <code>Regla</code> que
-     *          lo produzca
+     * reglas de este objeto
+     * @return un objeto
+     * <code>Regla</code> que produzca a
+     * <code>productoABuscar</code>,
+     * <code>null</code> si no encuentra ninguna
+     * <code>Regla</code> que lo produzca
      * @see Regla
      */
     private Regla buscarReglaQueProduzca(String productoABuscar) {
@@ -204,8 +227,14 @@ public class Induccion extends AlgoritmoDeInferencia {
         return reglaARegresar;
     }
 
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    
     /**
      * Permite obtener el objetivo que se quiere comprobar con este objeto.
+     *
      * @return la cadena con el objetivo a comprobar por este objeto
      */
     public String getObjetivo() {
@@ -214,6 +243,7 @@ public class Induccion extends AlgoritmoDeInferencia {
 
     /**
      * Permite obtener la pila de objetivos a comprobar por este objeto.
+     *
      * @return la pila de objetivos por comprobar por este objeto
      */
     public Stack<List<String>> getPilaDeObjetivos() {
@@ -223,8 +253,9 @@ public class Induccion extends AlgoritmoDeInferencia {
     /**
      * Permite obtener las reglas disparadas que explican el funcionamiento de
      * la ejecución de este objeto
-     * @return la lista con las <code>Regla</code> disparadas por la ejecución
-     *         de este objeto
+     *
+     * @return la lista con las
+     * <code>Regla</code> disparadas por la ejecución de este objeto
      * @see Regla
      */
     public List<Regla> getReglasDisparadas() {
@@ -232,9 +263,11 @@ public class Induccion extends AlgoritmoDeInferencia {
     }
 
     /**
-     * Permite obtener la pila de reglas por disparar que se espera sea comprobada
-     * por la ejecución de este objeto.
-     * @return la pila de <code>Regla</code> por comprobar por este objeto
+     * Permite obtener la pila de reglas por disparar que se espera sea
+     * comprobada por la ejecución de este objeto.
+     *
+     * @return la pila de
+     * <code>Regla</code> por comprobar por este objeto
      * @see Regla
      */
     public Stack<Regla> getReglasPorDisparar() {
@@ -244,9 +277,12 @@ public class Induccion extends AlgoritmoDeInferencia {
     /**
      * Permite conocer si la ejecución del algoritmo modelado por este objeto
      * fue capaz de comprobar la existencia del objetivo.
-     * @return <code>true</code> si la ejecución de este algoritmo pudo comprobar
-     *          la existencia del objetivo, <code>false</code> si no lo pudo comprobar
-     *          o si el algoritmo no ha sido ejecutado aún
+     *
+     * @return
+     * <code>true</code> si la ejecución de este algoritmo pudo comprobar la
+     * existencia del objetivo,
+     * <code>false</code> si no lo pudo comprobar o si el algoritmo no ha sido
+     * ejecutado aún
      */
     public boolean isSeEncontroObjetivo() {
         return seEncontroObjetivo;

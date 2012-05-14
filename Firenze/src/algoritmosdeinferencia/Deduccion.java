@@ -4,38 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Modela un algoritmo de inducción de tipo deductivo dada una lista de reglas
- * y una lista de hechos de inicio. Extiende a <code>AlgoritmoDeInferencia</code>
- * quien proporciona un comportamiento básico.
+ * Modela un algoritmo de inducción de tipo deductivo dada una lista de reglas y
+ * una lista de hechos de inicio. Extiende a
+ * <code>AlgoritmoDeInferencia</code> quien proporciona un comportamiento
+ * básico.
+ *
  * @author Charlie Corner
  * @see AlgoritmoDeInferencia
  */
 public class Deduccion extends AlgoritmoDeInferencia {
 
     /**
-     * La lista de reglas que han sido disparadas y que se usarán para la explicación
-     * de la ejecución del algoritmo.
+     * La lista de reglas que han sido disparadas y que se usarán para la
+     * explicación de la ejecución del algoritmo.
+     *
      * @see Regla
      */
     private List<Regla> reglasDisparadas;
 
     /**
-     * Constructor por defecto hecho explícito y privado que no inicializa ningún
-     * campo. Se debe utilizar el otro constructor para instanciar objetos de
-     * esta clase.
-     * @see Deduccion#Deduccion(java.util.List, java.util.List) 
+     * Constructor por defecto hecho explícito y privado que no inicializa
+     * ningún campo. Se debe utilizar el otro constructor para instanciar
+     * objetos de esta clase.
+     *
+     * @see Deduccion#Deduccion(java.util.List, java.util.List)
      */
     private Deduccion() {
     }
 
     /**
-     * Constructor que inicializa todos los campos de este objeto necesarios para
-     * la correcta ejecución del algoritmo. Además inicializa el campo de resultado para
-     * mostrar un mensaje de error por si no se ha ejecutado el algoritmo.
-     * @param conjuntoDeReglas la lista de objetos <code>Regla</code> que modelan
-     *                          las reglas de ejecución de este algoritmo
-     * @param hechosDeInicio    la lista con los hechos de inicio de este algoritmo
-     * @see FirenzeUtil#listaFromLineasSinParsear(java.lang.String[]) 
+     * Constructor que inicializa todos los campos de este objeto necesarios
+     * para la correcta ejecución del algoritmo. Además inicializa el campo de
+     * resultado para mostrar un mensaje de error por si no se ha ejecutado el
+     * algoritmo.
+     *
+     * @param conjuntoDeReglas la lista de objetos
+     * <code>Regla</code> que modelan las reglas de ejecución de este algoritmo
+     * @param hechosDeInicio la lista con los hechos de inicio de este algoritmo
+     * @see FirenzeUtil#listaFromLineasSinParsear(java.lang.String[])
      * @see FirenzeUtil#fromLineaSinParsear(java.lang.String)
      * @see Regla
      */
@@ -45,6 +51,19 @@ public class Deduccion extends AlgoritmoDeInferencia {
         this.reglasDisparadas = new ArrayList<Regla>();
         this.hechosInferidos = new ArrayList<String>();
         this.hechosPreguntados = new ArrayList<String>();
+        this.resultado = "No se ha corrido el algoritmo\n";
+    }
+
+    public Deduccion(List<Regla> conjuntoDeReglas,
+            List<String> hechosDeInicio,
+            List<String> hechosInferidos,
+            List<String> hechosPreguntados,
+            List<Regla> reglasDisparadas) {
+        this.conjuntoDeReglas = conjuntoDeReglas;
+        this.hechosDeInicio = hechosDeInicio;
+        this.reglasDisparadas = reglasDisparadas;
+        this.hechosInferidos = hechosInferidos;
+        this.hechosPreguntados = hechosPreguntados;
         this.resultado = "No se ha corrido el algoritmo\n";
     }
 
@@ -64,17 +83,14 @@ public class Deduccion extends AlgoritmoDeInferencia {
             }
 
             // Si se cumple la regla y el elemento producido no está ya en alguna de las listas
-            if (seCompletaLaRegla) {
-                reglasDisparadas.add(r);
+            if (seCompletaLaRegla && !isElementoEnListas(r.getProducto())) {
 
-                if (!isElementoEnListas(r.getProducto())) {
-
+                    reglasDisparadas.add(r);
                     if (true != agregarAHechosInferidos(r.getProducto())) {
                         System.err.println("Hubo un problema al agregar "
                                 + r.getIndiceDeRegla()
                                 + " a la lista de hechos preguntados");
                     }
-                }
             }
         }
         this.resultado = crearTextoRespuesta();
